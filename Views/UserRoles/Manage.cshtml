@@ -1,0 +1,29 @@
+﻿
+@model List<RoleViewModel>
+@{
+	ViewData["Title"] = "Manage";
+}
+<form method="post">
+	<div class=" card">
+		<div class="card-header">
+			<h2>Manage User Roles</h2>
+			<p>Add/Remove Roles For User : @ViewBag.User</p>
+		</div>
+		<div class=" card-body">
+			@for(int z=0;z<Model.Count;z++)
+			{
+				<div class="form-check m-1">
+					<input asp-for="@Model[z].RoleId" type="hidden" />
+					<input asp-for="@Model[z].Name" type="hidden" />
+					<input asp-for="@Model[z].IsSelected" class="form-check-input"/>
+					<label class="form-check-label" asp-for="@Model[z].IsSelected">@Model[z].Name</label>
+				</div>
+			}
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class=" card-footer">
+				<input type="submit" value="Update" class="btn btn-danger"/>
+				<a asp-action="Index" class="btn btn-primary">Cancel</a>
+			</div>
+		</div>
+	</div>
+</form>

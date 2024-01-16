@@ -1,0 +1,70 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container-fluid">
+    <h4>Create a new account.</h4>
+    <hr />
+
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+        <div class="row">
+        <div class="col-md-4">
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.FName"></label>
+                    <input asp-for="Input.FName" class="form-control" />
+                    <span asp-validation-for="Input.FName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.LName"></label>
+                    <input asp-for="Input.LName" class="form-control" />
+                    <span asp-validation-for="Input.LName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <div class="form-group">
+                <label asp-for="Input.Image" style="width: 100%;"></label>
+                <img id="profilePicture" style="width:350px;height:350px; object-fit:cover" src="~/profileimages/profile.png">
+
+                <input type="file"
+                       accept=".png,.jpg,.jpeg,.gif,.tif"
+                       asp-for="Input.Image"
+                       class="form-control"
+                       style="border:0px!important;padding: 0px;padding-top: 10px;padding-bottom: 30px;"
+                       onchange="document.getElementById('profilePicture').src = window.URL.createObjectURL(this.files[0])" />
+                <span asp-validation-for="Input.Image" class="text-danger"></span>
+            </div>
+        </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+
+    </form>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
